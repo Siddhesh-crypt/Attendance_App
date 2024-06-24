@@ -1,4 +1,3 @@
-import 'package:attadance_app/HomePage.dart';
 import 'package:attadance_app/RegistrationPage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

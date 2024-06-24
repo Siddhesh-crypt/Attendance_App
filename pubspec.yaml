@@ -42,6 +42,8 @@ dependencies:
   image_picker: ^1.1.2
   google_ml_kit: ^0.18.0
   shared_preferences: ^2.2.3
+  image: ^4.2.0
+  face_recognition: ^0.0.2
 
 dev_dependencies:
   flutter_test:
