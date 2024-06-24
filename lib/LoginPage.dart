@@ -1,8 +1,9 @@
 import 'package:attadance_app/HomePage.dart';
+import 'package:attadance_app/RegistrationPage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mysql1/mysql1.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
 
@@ -14,6 +15,8 @@ class _LoginpageState extends State<Loginpage> {
   bool _rememberMe = false;
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  final _prefs = SharedPreferences.getInstance();
 
   Future<void> _login() async {
     final username = _usernameController.text;
@@ -81,10 +84,17 @@ class _LoginpageState extends State<Loginpage> {
             'profileUrl': profileUrl,
           };
 
+          // If remember me is checked, store the credentials
+          if (_rememberMe) {
+            final prefs = await _prefs;
+            prefs.setString('username', username);
+            prefs.setString('password', password);
+          }
+
           // Redirect to homepage
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Homepage(sessionData)),
+            MaterialPageRoute(builder: (context) => FaceRecognitionPage()),
           );
         } else {
           Fluttertoast.showToast(
