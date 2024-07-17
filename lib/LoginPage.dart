@@ -1,4 +1,4 @@
-import 'package:attadance_app/RegistrationPage.dart';
+import 'package:attadance_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mysql1/mysql1.dart';
@@ -93,7 +93,7 @@ class _LoginpageState extends State<Loginpage> {
           // Redirect to homepage
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FaceRecognitionPage()),
+            MaterialPageRoute(builder: (context) => RegisterScreen()),
           );
         } else {
           Fluttertoast.showToast(
