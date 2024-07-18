@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -22,27 +24,43 @@ class DatabaseHelper {
     return response.statusCode == 200;
   }
 
-  static Future<bool> markAttendance({required String candidateId, required String status, required XFile imageFile}) async {
-    final request = http.MultipartRequest('POST', Uri.parse('$_baseUrl/attendance.php'));
+  static Future<Map<String, dynamic>> markAttendance({
+    required String candidateId,
+    required String status,
+    required String type,
+    required XFile imageFile,
+  }) async {
+    final url = Uri.parse('$_baseUrl/attendance.php'); // Replace with your server URL
 
-    // Add form fields
-    request.fields['candidate_id'] = candidateId;
-    request.fields['status'] = status;
+    final now = DateTime.now();
+    final formattedDate = DateFormat('yyyy-MM-dd').format(now);
+    final check_in_time = DateFormat('HH:mm:ss').format(now);
+    final check_out_time = DateFormat('HH:mm:ss').format(now);
 
-    // Add current date and time
-    DateTime now = DateTime.now();
-    String formattedDate = '${now.year}-${_twoDigits(now.month)}-${_twoDigits(now.day)}';
-    String formattedTime = '${_twoDigits(now.hour)}:${_twoDigits(now.minute)}:${_twoDigits(now.second)}';
-    request.fields['date'] = formattedDate;
-    request.fields['time'] = formattedTime;
+    final request = http.MultipartRequest('POST', url)
+      ..fields['candidate_id'] = candidateId
+      ..fields['status'] = status
+      ..fields['type'] = type
+      ..fields['date'] = formattedDate
+      ..fields['time'] = check_in_time 
+      ..fields['check_in_time'] = check_in_time
+      ..fields['check_out_time'] = check_out_time
+      ..files.add(await http.MultipartFile.fromPath('image', imageFile.path));
 
-    // Add image file
-    request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
-
-    // Send the request
     final response = await request.send();
-    return response.statusCode == 200;
+
+    if (response.statusCode == 200) {
+      final responseData = await response.stream.bytesToString();
+      final json = jsonDecode(responseData);
+      return json;
+    } else {
+      return {
+        'status': 'error',
+        'message': 'Server error: ${response.reasonPhrase}',
+      };
+    }
   }
+
 
   static String _twoDigits(int n) {
     if (n >= 10) return "$n";
@@ -91,19 +109,3 @@ class DatabaseHelper {
     }
   }
 }
-
-// class Attendance {
-//   final String name;
-//   final String id;
-//   final String status;
-//   final String date;
-//
-//   Attendance({
-//     required this.name,
-//     required this.id,
-//     required this.status,
-//     required this.date,
-//   });
-// }
-
-

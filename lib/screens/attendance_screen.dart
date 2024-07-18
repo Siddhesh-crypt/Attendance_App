@@ -22,20 +22,27 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     });
   }
 
-  Future<void> _markAttendance() async {
+  Future<void> _markAttendance(String type) async {
     if (_imageFile != null) {
-      bool success = await DatabaseHelper.markAttendance(
+
+      var result = await DatabaseHelper.markAttendance(
         candidateId: _candidateIdController.text,
-        status: 'Present',
+        status: type == 'check_in' ? 'Present' : 'Checked Out',
+        type: type,
         imageFile: _imageFile!,
       );
-      if (success) {
+
+      if (result['status'] == 'success') {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Attendance marked successfully')),
+          SnackBar(content: Text('Attendance $type marked successfully')),
         );
-        print('Attendance marked successfully');
+        print('Attendance $type marked successfully');
       } else {
-        print('Failed to mark attendance');
+        String errorMessage = result['message'] ?? 'Failed to mark attendance';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage)),
+        );
+        print('Failed to mark attendance: $errorMessage');
       }
     }
   }
@@ -45,15 +52,18 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Mark Attendance', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+        title: Text(
+          'Mark Attendance',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.purple, Colors.blue],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            )
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.purple, Colors.blue],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
       ),
       drawer: AnimatedDrawer(),
@@ -97,7 +107,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
               Container(
                 width: 200,
                 height: 200,
@@ -128,51 +138,13 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       : null,
                 ),
               ),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
               Container(
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
-                    colors: [Colors.redAccent, Colors.orangeAccent,],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    ),
-                  ]
-                ),
-                child: ElevatedButton(
-                  onPressed: _pickImage,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Capture Image', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-                      Icon(Icons.camera, color: Colors.white,)
-                    ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 16,),
-              Container(
-                width: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.blueAccent],
+                    colors: [Colors.redAccent, Colors.orangeAccent],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -186,7 +158,20 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ],
                 ),
                 child: ElevatedButton(
-                  onPressed: _markAttendance,
+                  onPressed: _pickImage,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Capture Image',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.camera,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
@@ -195,22 +180,100 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Mark Attendance',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
                 ),
               ),
-
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: [Colors.blue, Colors.blueAccent],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () => _markAttendance('check_in'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Check In',
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                          Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        colors: [Colors.green, Colors.greenAccent],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () => _markAttendance('check_out'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Check Out',
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                          Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

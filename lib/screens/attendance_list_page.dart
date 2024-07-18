@@ -93,7 +93,8 @@ class _AttendanceListPageState extends State<AttendanceListPage> {
                   DataColumn(label: Text('Candidate ID')),
                   DataColumn(label: Text('Status')),
                   DataColumn(label: Text('Date')),
-                  DataColumn(label: Text('Time')),
+                  DataColumn(label: Text('Check In')),
+                  DataColumn(label: Text('Check Out'))
                 ],
                 rows: _attendanceData
                     .where((record) =>
@@ -108,7 +109,8 @@ class _AttendanceListPageState extends State<AttendanceListPage> {
                     DataCell(Text(record['candidate_id'])),
                     DataCell(Text(record['status'])),
                     DataCell(Text(record['date'])),
-                    DataCell(Text(record['time'])),
+                    DataCell(Text(record['check_in_time'])),
+                    DataCell(Text(record['check_out_time'])),
                   ]);
                 }).toList(),
               ),
