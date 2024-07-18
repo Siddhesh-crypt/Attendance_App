@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
           gradient: LinearGradient(
-          colors: [Colors.purple, Colors.blue],
+          colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           ),
@@ -93,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -130,7 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -196,7 +196,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -226,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -268,7 +268,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
                   gradient: LinearGradient(
-                    colors: [Colors.green, Colors.lightGreen],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -310,7 +310,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
                   gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.greenAccent],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),

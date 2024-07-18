@@ -59,7 +59,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.purple, Colors.blue],
+              colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -84,7 +84,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ],
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -114,7 +114,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
-                    colors: [Colors.purple, Colors.blue],
+                    colors: [Colors.blue.shade700, Colors.lightBlue.shade700, Colors.blueAccent.shade700],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -144,7 +144,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
-                    colors: [Colors.redAccent, Colors.orangeAccent],
+                    colors: [Colors.redAccent, Colors.orangeAccent.shade700],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -191,7 +191,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
-                        colors: [Colors.blue, Colors.blueAccent],
+                        colors: [Colors.blue, Colors.blueAccent.shade700],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
@@ -234,7 +234,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
-                        colors: [Colors.green, Colors.greenAccent],
+                        colors: [Colors.green, Colors.greenAccent.shade700],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
