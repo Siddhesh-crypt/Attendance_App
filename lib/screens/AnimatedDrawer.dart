@@ -61,14 +61,16 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProvid
                       DrawerHeader(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Colors.purple, Colors.blue],
+                            colors: [Colors.blue.shade700, Colors.lightBlue.shade700, Colors.blueAccent.shade700],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                         ),
-                        child: Text(
-                          'DB Skills',
-                          style: TextStyle(color: Colors.white, fontSize: 24),
+                        child: Center(
+                          child: Text(
+                            'DB Skills',
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
                         ),
                       ),
                       ListTile(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/database_helper.dart';
+import 'AnimatedDrawer.dart';
 
 class AttendanceListPage extends StatefulWidget {
   @override
@@ -61,10 +62,11 @@ class _AttendanceListPageState extends State<AttendanceListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Attendance List'),
+        centerTitle: true,
+        title: Text('Attendance List', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
         actions: [
           IconButton(
-            icon: Icon(Icons.filter_list),
+            icon: Icon(Icons.filter_list, color: Colors.white,),
             onPressed: () async {
               DateTime? selectedDate = await showDatePicker(
                 context: context,
@@ -76,11 +78,21 @@ class _AttendanceListPageState extends State<AttendanceListPage> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.download),
+            icon: Icon(Icons.download, color: Colors.white,),
             onPressed: _downloadCsv,
           ),
         ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
+      drawer: AnimatedDrawer(),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: _loading
