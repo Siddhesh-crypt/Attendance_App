@@ -1,5 +1,6 @@
 
 import 'package:attadance_app/screens/attendance_list_page.dart';
+import 'package:attadance_app/screens/contact_us.dart';
 import 'package:attadance_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -100,6 +101,17 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProvid
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => AttendanceListPage()),
+                          );
+                        },
+                      ),
+
+                      ListTile(
+                        title: Text('Contact Us'),
+                        onTap: () {
+                          // Implement navigation or action
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ContactUsPage()),
                           );
                         },
                       ),
