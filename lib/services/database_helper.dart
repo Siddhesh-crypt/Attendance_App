@@ -1,14 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import '../model/attendance.dart';
 
 class DatabaseHelper {
   static const String _baseUrl = 'https://dbs.ideaas.co.in/api';
