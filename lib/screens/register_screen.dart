@@ -64,16 +64,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-          title: Text('Register Candidate', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-          gradient: LinearGradient(
-          colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          ),
-          )
+        title: Text(
+          'Register Candidate',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            )),
       ),
       drawer: AnimatedDrawer(),
       body: SingleChildScrollView(
@@ -224,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 width: 250,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
+                  borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
@@ -242,31 +244,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ElevatedButton(
                   onPressed: _pickImage,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent, // Make button transparent
-                    elevation: 0, // Remove default elevation
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0), // Adjust padding as needed
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 24.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Same as BoxDecoration borderRadius
-                      // Optional: You can also set the border here if needed
-                      // side: BorderSide(width: 1, color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Pick Image', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                      Icon(Icons.camera, color: Colors.white,)
+                      Text(
+                        'Pick Image',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.camera,
+                        color: Colors.white,
+                      )
                     ],
                   ),
                 ),
               ),
-
               SizedBox(height: 16.0),
-
               Container(
                 width: 250,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
+                  borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
@@ -284,31 +290,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ElevatedButton(
                   onPressed: _registerCandidate,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent, // Make button transparent
-                    elevation: 0, // Remove default elevation
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0), // Adjust padding as needed
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 24.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Same as BoxDecoration borderRadius
-                      // Optional: You can also set the border here if needed
-                      // side: BorderSide(width: 1, color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Register Candidate', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-                      Icon(Icons.person_add_alt, color: Colors.white,)
+                      Text(
+                        'Register Candidate',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.person_add_alt,
+                        color: Colors.white,
+                      )
                     ],
                   ),
                 ),
               ),
-
               SizedBox(height: 16.0),
-
               Container(
                 width: 250,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), // Adjust border radius as needed
+                  borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     colors: [Colors.blue, Colors.lightBlue, Colors.blueAccent],
                     begin: Alignment.centerLeft,
@@ -326,13 +336,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ElevatedButton(
                   onPressed: _navigateToAttendance,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent, // Make button transparent
-                    elevation: 0, // Remove default elevation
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0), // Adjust padding as needed
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 24.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Same as BoxDecoration borderRadius
-                      // Optional: You can also set the border here if needed
-                      // side: BorderSide(width: 1, color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Row(
@@ -340,7 +349,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: [
                       Text(
                         'Go to Attendance',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       Icon(
                         Icons.arrow_forward,
@@ -350,8 +360,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-
-
             ],
           ),
         ),
@@ -359,5 +367,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
-
-

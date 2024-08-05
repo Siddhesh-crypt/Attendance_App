@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:label="attadance_app"
+        android:label="DB Skills Attendance App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

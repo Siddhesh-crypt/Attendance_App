@@ -1,3 +1,4 @@
+import 'package:attadance_app/screens/onboarding_screen.dart';
 import 'package:attadance_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -42,6 +43,7 @@ class _LoginpageState extends State<Loginpage> {
         'SELECT * FROM users WHERE username = ? AND password = MD5(?) AND inactive = 0 LIMIT 1',
         [username, password],
       );
+      print(results);
 
       if (results.isNotEmpty) {
         final userData = results.first;
@@ -60,9 +62,10 @@ class _LoginpageState extends State<Loginpage> {
 
         // Get employee details
         final empResults = await conn.query(
-          'SELECT * FROM employee WHERE id = ? AND inactive = 0 LIMIT 1',
-          [userid],
+          'SELECT * FROM employee WHERE empid = ? AND inactive = 0 LIMIT 1',
+          [username],
         );
+        print(empResults);
 
         if (empResults.isNotEmpty) {
           final empData = empResults.first;
