@@ -1,4 +1,3 @@
-
 import 'package:attadance_app/screens/attendance_list_page.dart';
 import 'package:attadance_app/screens/contact_us.dart';
 import 'package:attadance_app/screens/register_screen.dart';
@@ -13,7 +12,7 @@ class AnimatedDrawer extends StatefulWidget {
 
 class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  final double maxSlide = 250.0; // Adjust as needed
+  final double maxSlide = 200.0; // Adjust as needed
 
   @override
   void initState() {
@@ -34,6 +33,12 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProvid
     _animationController.isDismissed ? _animationController.forward() : _animationController.reverse();
   }
 
+  void closeDrawer() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -44,9 +49,7 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProvid
         return Stack(
           children: [
             GestureDetector(
-              onTap: () {
-                if (_animationController.isCompleted) toggleDrawer();
-              },
+              onTap: closeDrawer,
               child: Container(
                 color: Colors.transparent,
               ),
@@ -68,54 +71,69 @@ class _AnimatedDrawerState extends State<AnimatedDrawer> with SingleTickerProvid
                           ),
                         ),
                         child: Center(
-                          child: Text(
-                            'DB Skills',
-                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 105, // Adjust size as needed
+                                width: 105,  // Adjust size as needed
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/dbskill_logo.png'),
+                                    fit: BoxFit.fill, // Adjust fit as needed
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 2.0,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                       ListTile(
-                        title: Text('Mark Attendence'),
+                        title: Text('Mark Attendance'),
                         onTap: () {
-                          // Implement navigation or action
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => AttendanceScreen()),
-                          );
+                          ).then((_) => closeDrawer());
                         },
                       ),
                       ListTile(
                         title: Text('Register Candidate'),
                         onTap: () {
-                          // Implement navigation or action
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => RegisterScreen()),
-                          );
+                          ).then((_) => closeDrawer());
                         },
                       ),
                       ListTile(
-                        title: Text('Show Attendence'),
+                        title: Text('Show Attendance'),
                         onTap: () {
-                          // Implement navigation or action
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => AttendanceListPage()),
-                          );
+                          ).then((_) => closeDrawer());
                         },
                       ),
-
                       ListTile(
                         title: Text('Contact Us'),
                         onTap: () {
-                          // Implement navigation or action
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => ContactUsPage()),
-                          );
+                          ).then((_) => closeDrawer());
                         },
                       ),
-
                       // Add more items as needed
                     ],
                   ),
